@@ -75,11 +75,7 @@ jobs:
       - name: 多线程编译 ImmortalWrt (Build ImmortalWrt multithreading)
         if: ${{inputs.multithreading == true}}
         working-directory: ImmortalWrt
-        run: |
-          cd $REPO_NAME
-          make -j1 V=s
-          pwd
-          ls
+        run: make -j$(nproc) V=s
 
       - name: 单线程编译 ImmortalWrt (Build ImmortalWrt single thread)
         if: ${{inputs.multithreading == false}}
